@@ -46,9 +46,9 @@ public class NivelServiceImpl implements NivelService {
         Boolean existe = nivelRepository.existsById(id);
         if (existe){
             Nivel indicada = nivelRepository.findById(id).get();
-            indicada.setNivel(actualizado.getNivel());
+            actualizado.setNivelId(id);
             System.out.println("El tipo de misión ha sido actualizado");
-            return nivelRepository.save(indicada);
+            return nivelRepository.save(actualizado);
         }else{
             System.out.println("El ID indicado no existe");
             return null;

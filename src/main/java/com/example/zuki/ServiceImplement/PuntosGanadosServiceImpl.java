@@ -44,9 +44,9 @@ public class PuntosGanadosServiceImpl implements PuntosGanadosService {
         Boolean existe = puntosGanadosRepository.existsById(id);
         if (existe) {
             PuntosGanados indicada = puntosGanadosRepository.findById(id).get();
-            indicada.setPuntosGanadosId(actualizado.getPuntosGanadosId());
+            actualizado.setPuntosGanadosId(id);
             System.out.println("El tipo de misión ha sido actualizado");
-            return puntosGanadosRepository.save(indicada);
+            return puntosGanadosRepository.save(actualizado);
         } else {
             System.out.println("El ID indicado no existe");
             return null;

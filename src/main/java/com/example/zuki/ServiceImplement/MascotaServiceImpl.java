@@ -46,9 +46,9 @@ public class MascotaServiceImpl implements MascotaService {
         Boolean existe = mascotaRepository.existsById(id);
         if (existe) {
             Mascota indicada = mascotaRepository.findById(id).get();
-            indicada.setMascotaId(actualizado.getMascotaId());
+            actualizado.setMascotaId(id);
             System.out.println("la mascota ha sido actualizado");
-            return mascotaRepository.save(indicada);
+            return mascotaRepository.save(actualizado);
         } else {
             System.out.println("El ID indicado no existe");
             return null;

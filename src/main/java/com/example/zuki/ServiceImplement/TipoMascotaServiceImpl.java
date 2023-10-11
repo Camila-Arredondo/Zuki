@@ -45,9 +45,9 @@ public class TipoMascotaServiceImpl implements TipoMascotaService {
         Boolean existe = tipoMascotaRepository.existsById(id);
         if (existe){
             TipoMascota indicada = tipoMascotaRepository.findById(id).get();
-            indicada.setTipoMascota(actualizado.getTipoMascota());
+            actualizado.setTipoMascotaId(id);
             System.out.println("El tipo de mascota ha sido actualizado");
-            return tipoMascotaRepository.save(indicada);
+            return tipoMascotaRepository.save(actualizado);
         }else{
             System.out.println("El ID indicado no existe");
             return null;

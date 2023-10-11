@@ -11,38 +11,38 @@ import java.util.List;
 
 public class PuntosGanadosRestController {
     @Autowired
-    private PuntosGanadosServiceImpl puntosGanadosServices;
+    private PuntosGanadosServiceImpl puntosGanadosService;
 
 
 
     @GetMapping("/puntosGanados")
     public List<PuntosGanados> lista(){
-        List<PuntosGanados> mostrar = puntosGanadosServices.lista();
+        List<PuntosGanados> mostrar = puntosGanadosService.lista();
         return mostrar;
     }
 
     @PostMapping(value = "/puntosGanados")
     public String save(@RequestBody PuntosGanados puntosGanados) {
-        puntosGanadosServices.guardar(puntosGanados);
+        puntosGanadosService.guardar(puntosGanados);
         return "Tipo de masccota Guardado";
     }
 
 
     @GetMapping("/puntosGanados/{id}")
     public PuntosGanados buscarPorId(@PathVariable Long id) {
-        PuntosGanados mostrar = puntosGanadosServices.buscarPorId(id);
+        PuntosGanados mostrar = puntosGanadosService.buscarPorId(id);
         return mostrar;
     }
 
     @DeleteMapping("/puntosGanados/{id}")
     public String borrarPorId(@PathVariable Long id) {
-        puntosGanadosServices.borrarPorId(id);
-        return "El tipo de mascota ha sido borrrado";
+        puntosGanadosService.borrarPorId(id);
+        return "Puntos ganados ha sido borrrado";
     }
 
     @PutMapping("/puntosGanados/{id}")
     public PuntosGanados editarPorId(@PathVariable Long id, @RequestBody PuntosGanados actualizado) {
-        PuntosGanados editado = puntosGanadosServices.editarPorId(id, actualizado);
+        PuntosGanados editado = puntosGanadosService.editarPorId(id, actualizado);
         return editado;
 
     }

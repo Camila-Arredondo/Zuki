@@ -47,7 +47,7 @@ public class UsuarioServiceImp implements UsuarioService {
             Usuario indicada = repository.findById(id).get();
             usuarioActualizado.setUsuarioId(id);
             System.out.println("El usuario ha sido actualizado");
-            return repository.save(indicada);
+            return repository.save(usuarioActualizado);
         } else {
             System.out.println("El ID indicado no existe");
             return null;

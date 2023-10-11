@@ -21,5 +21,4 @@ public class Mascota {
 
     public String nombre;
 
-    public String tipoMascota;
 }

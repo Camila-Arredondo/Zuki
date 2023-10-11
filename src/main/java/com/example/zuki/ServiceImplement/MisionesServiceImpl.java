@@ -49,7 +49,7 @@ public class MisionesServiceImpl implements MisionesService {
             Misiones indicada = repository.findById(id).get();
             actualizado.setMisionID(id);
             System.out.println("La misión ha sido actualizada");
-            return repository.save(indicada);
+            return repository.save(actualizado);
         }else{
             System.out.println("El ID indicado no existe");
             return null;

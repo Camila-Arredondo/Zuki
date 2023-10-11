@@ -11,41 +11,37 @@ import java.util.List;
 @RequestMapping("/api")
 public class TipoMascotaRestController {
     @Autowired
-    private TipoMascotaServiceImpl tipoMascotaservicesImpl;
+    private TipoMascotaServiceImpl tipoMascotaService;
 
-    @GetMapping(value = "/tipomascota")
-    public String TipoMascota() {
-        return "Tipos de mascotas";
-    }
 
-    @GetMapping("/tipoMisiones")
+    @GetMapping("/tipoMascota")
     public List<TipoMascota> lista(){
-        List<TipoMascota> mostrar = tipoMascotaservicesImpl.lista();
+        List<TipoMascota> mostrar = tipoMascotaService.lista();
         return mostrar;
     }
 
-    @PostMapping(value = "/nuevotipomascota")
+    @PostMapping(value = "/tipoMascota")
     public String save(@RequestBody TipoMascota tipoMascota) {
-        tipoMascotaservicesImpl.guardar(tipoMascota);
+        tipoMascotaService.guardar(tipoMascota);
         return "Tipo de masccota Guardado";
     }
 
 
     @GetMapping("/tipoMascota/{id}")
     public TipoMascota buscarPorId(@PathVariable Long id) {
-        TipoMascota mostrar = tipoMascotaservicesImpl.buscarPorId(id);
+        TipoMascota mostrar = tipoMascotaService.buscarPorId(id);
         return mostrar;
     }
 
     @DeleteMapping("/tipoMascota/{id}")
     public String borrarPorId(@PathVariable Long id) {
-        tipoMascotaservicesImpl.borrarPorId(id);
+        tipoMascotaService.borrarPorId(id);
         return "El tipo de mascota ha sido borrrado";
     }
 
-    @PutMapping("/tipoMisiones/{id}")
+    @PutMapping("/tipoMascota/{id}")
     public TipoMascota editarPorId(@PathVariable Long id, @RequestBody TipoMascota actualizado) {
-        TipoMascota editado = tipoMascotaservicesImpl.editarPorId(id, actualizado);
+        TipoMascota editado = tipoMascotaService.editarPorId(id, actualizado);
         return editado;
 
     }

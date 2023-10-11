@@ -1,7 +1,6 @@
 package com.example.zuki.Controller;
 
 import com.example.zuki.Entity.Nivel;
-import com.example.zuki.Entity.TipoMision;
 import com.example.zuki.ServiceImplement.NivelServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,41 +13,36 @@ public class NivelRestController {
 
 
     @Autowired
-    private NivelServiceImpl nivelServiceImpl;
+    private NivelServiceImpl nivelService;
 
-    @GetMapping(value = "/tipomascota")
-    public String TipoMascota() {
-        return "Tipos de mascotas";
-    }
-
-    @GetMapping("/tipoMisiones")
+    @GetMapping("/nivel")
     public List<Nivel> lista(){
-        List<Nivel> mostrar = nivelServiceImpl.lista();
+        List<Nivel> mostrar = nivelService.lista();
         return mostrar;
     }
 
-    @PostMapping(value = "/nuevotipomascota")
+    @PostMapping(value = "/nivel")
     public String save(@RequestBody Nivel Nivel) {
-        nivelServiceImpl.guardar(Nivel);
-        return "Tipo de masccota Guardado";
+        nivelService.guardar(Nivel);
+        return "Nivel guardado";
     }
 
 
-    @GetMapping("/tipoMascota/{id}")
+    @GetMapping("/nivel/{id}")
     public Nivel buscarPorId(@PathVariable Long id) {
-        Nivel mostrar = nivelServiceImpl.buscarPorId(id);
+        Nivel mostrar = nivelService.buscarPorId(id);
         return mostrar;
     }
 
-    @DeleteMapping("/tipoMascota/{id}")
+    @DeleteMapping("/nivel/{id}")
     public String borrarPorId(@PathVariable Long id) {
-        nivelServiceImpl.borrarPorId(id);
-        return "El tipo de mascota ha sido borrrado";
+        nivelService.borrarPorId(id);
+        return "El nivel ha sido borrrado";
     }
 
-    @PutMapping("/tipoMisiones/{id}")
+    @PutMapping("/nivel/{id}")
     public Nivel editarPorId(@PathVariable Long id, @RequestBody Nivel actualizado) {
-        Nivel editado = nivelServiceImpl.editarPorId(id, actualizado);
+        Nivel editado = nivelService.editarPorId(id, actualizado);
         return editado;
 
     }

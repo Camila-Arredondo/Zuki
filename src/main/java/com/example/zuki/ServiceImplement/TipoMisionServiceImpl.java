@@ -45,9 +45,9 @@ public class TipoMisionServiceImpl implements TipoMisionService {
         Boolean existe = repository.existsById(id);
         if (existe){
             TipoMision indicada = repository.findById(id).get();
-            indicada.setTipoMision(actualizado.getTipoMision());
+            actualizado.setTipoMisionID(id);
             System.out.println("El tipo de misión ha sido actualizado");
-            return repository.save(indicada);
+            return repository.save(actualizado);
         }else{
             System.out.println("El ID indicado no existe");
             return null;
