@@ -4,13 +4,14 @@ import com.example.zuki.Entity.Nivel;
 import java.util.List;
 
 public interface NivelService {
-    List<Nivel> listaDeNiveles();
 
-    Nivel guardarNivel(Nivel nivelNuevo);
+    List<Nivel> lista();
 
     Nivel buscarPorId(Long id);
 
-    void borrarNivel(Long id);
+    Nivel guardar(Nivel nuevo);
 
-    Nivel editarNivel(Long id, Nivel nivelActualizado);
+    void borrarPorId(Long id);
+
+    Nivel editarPorId(Long id, Nivel actualizado);
 }

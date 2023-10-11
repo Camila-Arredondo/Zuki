@@ -13,27 +13,43 @@ public class PuntosGanadosServiceImpl implements PuntosGanadosService {
     @Autowired
     private PuntosGanadosRepository puntosGanadosRepository;
     @Override
-    public List<PuntosGanados> listaDePuntosGanados() {
+    public List<PuntosGanados> lista() {
         return puntosGanadosRepository.findAll();
     }
 
     @Override
-    public PuntosGanados buscarPuntosGanadosPorId(Long id) {
-        return puntosGanadosRepository.findById(id).get();
+    public PuntosGanados buscarPorId(Long id) {
+        Boolean existe = puntosGanadosRepository.existsById(id);
+        if (existe) {
+            PuntosGanados inidicada = puntosGanadosRepository.findById(id).get();
+            return inidicada;
+        } else {
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
     }
 
     @Override
-    public PuntosGanados guardarPuntosGanados (PuntosGanados PuntosGanadosNuevo) {
-        return puntosGanadosRepository.save(PuntosGanadosNuevo);
+    public PuntosGanados guardar(PuntosGanados nuevo) {
+        return puntosGanadosRepository.save((nuevo));
     }
 
     @Override
-    public void borrarPuntosGanadosNuevo(Long id) {
+    public void borrarPorId(Long id) {
+        puntosGanadosRepository.deleteById(id);
     }
 
     @Override
-    public PuntosGanados editarPuntosGanados(Long id, PuntosGanados nivelActualizado) {
-        return null;
+    public PuntosGanados editarPorId(Long id, PuntosGanados actualizado) {
+        Boolean existe = puntosGanadosRepository.existsById(id);
+        if (existe) {
+            PuntosGanados indicada = puntosGanadosRepository.findById(id).get();
+            indicada.setPuntosGanadosId(actualizado.getPuntosGanadosId());
+            System.out.println("El tipo de misión ha sido actualizado");
+            return puntosGanadosRepository.save(indicada);
+        } else {
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
     }
-
 }

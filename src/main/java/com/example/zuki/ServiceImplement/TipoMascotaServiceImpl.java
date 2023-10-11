@@ -14,19 +14,43 @@ public class TipoMascotaServiceImpl implements TipoMascotaService {
     private TipoMascotaRepository tipoMascotaRepository;
 
     @Override
-    public List<TipoMascota> ListaTipoMascota(){return tipoMascotaRepository.findAll();}
+    public List<TipoMascota> lista() {
+        return tipoMascotaRepository.findAll();
+    }
 
     @Override
-    public TipoMascota buscarTipoMascotaPorId(Long id){return tipoMascotaRepository.findById(id).get();}
+    public TipoMascota buscarPorId(Long id) {
+        Boolean existe= tipoMascotaRepository.existsById(id);
+        if(existe){
+            TipoMascota inidicada= tipoMascotaRepository.findById(id).get();
+            return inidicada;
+        }else{
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
+    }
 
     @Override
-    public TipoMascota guardarTipoMascota (TipoMascota TipoMascotaNuevo){return tipoMascotaRepository.save(TipoMascotaNuevo);}
+    public TipoMascota guardar(TipoMascota nuevo) {
+        return tipoMascotaRepository.save((nuevo));
+    }
 
     @Override
-    public void borrarTipoMascota(Long id){}
+    public void borrarPorId(Long id) {
+        tipoMascotaRepository.deleteById(id);
+    }
 
     @Override
-    public TipoMascota editarTipoMascotaPorId(Long id, TipoMascota TipoMascotaActualizado){return null;}
-
-
+    public TipoMascota editarPorId(Long id, TipoMascota actualizado) {
+        Boolean existe = tipoMascotaRepository.existsById(id);
+        if (existe){
+            TipoMascota indicada = tipoMascotaRepository.findById(id).get();
+            indicada.setTipoMascota(actualizado.getTipoMascota());
+            System.out.println("El tipo de mascota ha sido actualizado");
+            return tipoMascotaRepository.save(indicada);
+        }else{
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
+    }
 }

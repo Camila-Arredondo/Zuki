@@ -9,28 +9,49 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class MascotaServiceImpl implements MascotaService {
+    // Inyección de dependencia
+
     @Autowired
     private MascotaRepository mascotaRepository;
+
     @Override
-    public List<Mascota> listaDeMascota() {
+    public List<Mascota> lista() {
         return mascotaRepository.findAll();
     }
 
     @Override
-    public Mascota buscarMascotaPorId(Long id) {return mascotaRepository.findById(id).get();}
-
-    @Override
-    public Mascota guardarMascota (Mascota mascotaNuevo) {
-        return mascotaRepository.save(mascotaNuevo);
+    public Mascota buscarPorId(Long id) {
+        Boolean existe = mascotaRepository.existsById(id);
+        if (existe) {
+            Mascota inidicada = mascotaRepository.findById(id).get();
+            return inidicada;
+        } else {
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
     }
 
     @Override
-    public void borrarMascota(Long id) {
-
+    public Mascota guardar(Mascota nuevo) {
+        return mascotaRepository.save((nuevo));
     }
 
     @Override
-    public Mascota editarMascotaPorId(Long id, Mascota mascotaActualizado) {
-        return null;
+    public void borrarPorId(Long id) {
+        mascotaRepository.deleteById(id);
+    }
+
+    @Override
+    public Mascota editarPorId(Long id, Mascota actualizado) {
+        Boolean existe = mascotaRepository.existsById(id);
+        if (existe) {
+            Mascota indicada = mascotaRepository.findById(id).get();
+            indicada.setMascotaId(actualizado.getMascotaId());
+            System.out.println("la mascota ha sido actualizado");
+            return mascotaRepository.save(indicada);
+        } else {
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
     }
 }

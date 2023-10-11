@@ -15,35 +15,42 @@ public class NivelServiceImpl implements NivelService {
     NivelRepository nivelRepository;
 
     @Override
-    public List<Nivel> listaDeNiveles() {
-        return nivelRepository.findAll();
+    public List<Nivel> lista() {
+        return nivelRepository.findAll ();
     }
 
     @Override
-    public Nivel guardarNivel(Nivel nivelNuevo) {
-        return nivelRepository.save(nivelNuevo);
+    public Nivel buscarPorId(Long id) {
+        Boolean existe= nivelRepository.existsById(id);
+        if(existe){
+            Nivel inidicada= nivelRepository.findById(id).get();
+            return inidicada;
+        }else{
+            System.out.println("El ID indicado no existe");
+            return null;
+        }
     }
 
     @Override
-    public Nivel buscarPorId(Long id){
-        return nivelRepository.findById(id).get();
+    public Nivel guardar(Nivel nuevo) {
+        return nivelRepository.save((nuevo));
     }
 
     @Override
-    public void borrarNivel(Long id) {
+    public void borrarPorId(Long id) {
         nivelRepository.deleteById(id);
     }
 
     @Override
-    public Nivel editarNivel(Long id, Nivel nivelActualizado) {
+    public Nivel editarPorId(Long id, Nivel actualizado) {
         Boolean existe = nivelRepository.existsById(id);
-        if (existe) {
-            Nivel nivelSeleccionado = nivelRepository.findById(id).get();
-            nivelSeleccionado.setNivel(nivelActualizado.getNivel());
-            nivelSeleccionado.setExperiencia(nivelSeleccionado.getExperiencia());
-            return nivelRepository.save(nivelSeleccionado);
-        } else {
-            System.out.println("El Nivel es incorrecto o no existe");
+        if (existe){
+            Nivel indicada = nivelRepository.findById(id).get();
+            indicada.setNivel(actualizado.getNivel());
+            System.out.println("El tipo de misión ha sido actualizado");
+            return nivelRepository.save(indicada);
+        }else{
+            System.out.println("El ID indicado no existe");
             return null;
         }
     }
