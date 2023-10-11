@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name="tipoMision")
 
@@ -22,4 +24,8 @@ public class TipoMision {
     @Column(name="tipoMision")
     @NotNull
     private String tipoMision;
+
+
+    @OneToMany(mappedBy = "tipoMision")
+    private List<Misiones> misiones;
 }

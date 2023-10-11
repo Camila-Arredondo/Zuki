@@ -45,4 +45,13 @@ public class Misiones {
     @NotNull
     private String fotoMision;
 
+
+    @ManyToOne
+    @JoinColumn(name = "tipomision_id")
+    private TipoMision tipoMision;
+
+
+    @OneToMany(mappedBy = "misiones")
+    private List<PuntosGanados> puntosGanados;
+
 }

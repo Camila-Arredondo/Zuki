@@ -29,4 +29,9 @@ public class Usuario {
     @NotNull
     public String clave;
 
+
+    @OneToOne(mappedBy = "usuario")
+    private Mascota mascota;
+
+
 }

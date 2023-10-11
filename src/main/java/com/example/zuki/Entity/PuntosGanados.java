@@ -21,4 +21,12 @@ public class PuntosGanados {
 
     public Integer puntosExperiencia;
 
+    @ManyToOne
+    @JoinColumn(name = "misiones_id")
+    private Misiones misiones;
+
+    @ManyToOne
+    @JoinColumn(name = "mascota_id")
+    private Mascota mascota;
+
 }

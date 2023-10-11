@@ -1,10 +1,13 @@
 package com.example.zuki.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name="tipoMascota")
@@ -22,4 +25,10 @@ public class TipoMascota {
     public String imagen;
 
     public String tipoMascota;
+
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "tipoMascota")
+    private List<Mascota> mascotas;
 }
