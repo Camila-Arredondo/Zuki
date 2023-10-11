@@ -5,13 +5,14 @@ import com.example.zuki.Entity.Mascota;
 import java.util.List;
 
 public interface MascotaService {
-    List<Mascota> listaDeMascota();
 
-    Mascota buscarMascotaPorId(Long id);
+    List<Mascota> lista();
 
-    Mascota guardarMascota(Mascota mascotaNuevo);
+    Mascota buscarPorId(Long id);
 
-    void borrarMascota(Long id);
+    Mascota guardar(Mascota nuevo);
 
-    Mascota editarMascotaPorId(Long id, Mascota nivelActualizado);
+    void borrarPorId(Long id);
+
+    Mascota editarPorId(Long id, Mascota actualizado);
 }

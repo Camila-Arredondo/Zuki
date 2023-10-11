@@ -11,34 +11,41 @@ import java.util.List;
 
 public class PuntosGanadosRestController {
     @Autowired
-    private PuntosGanadosServiceImpl puntosganadosImpl;
+    private PuntosGanadosServiceImpl puntosGanadosServices;
 
 
-    @GetMapping(value = "/listapuntosganados")
-    public List<PuntosGanados> Lista(){return puntosganadosImpl.listaDePuntosGanados();}
 
-    @PostMapping(value = "/guardarpuntosganados")
-    public String saves(@RequestBody PuntosGanados puntosGanados){
-        puntosganadosImpl.guardarPuntosGanados(puntosGanados);
-        return "Puntos Guardados";
-    }
-
-    @GetMapping("/puntosganados/{id}")
-    public PuntosGanados buscarPorId (@PathVariable Long id){
-        PuntosGanados mostrar = puntosganadosImpl.buscarPuntosGanadosPorId(id);
+    @GetMapping("/puntosGanados")
+    public List<PuntosGanados> lista(){
+        List<PuntosGanados> mostrar = puntosGanadosServices.lista();
         return mostrar;
     }
 
-    @DeleteMapping("/tipoMascota/{id}")
-    public String borrarPorId (@PathVariable Long id){
-        puntosganadosImpl.borrarPuntosGanadosNuevo(id);
+    @PostMapping(value = "/puntosGanados")
+    public String save(@RequestBody PuntosGanados puntosGanados) {
+        puntosGanadosServices.guardar(puntosGanados);
+        return "Tipo de masccota Guardado";
+    }
+
+
+    @GetMapping("/puntosGanados/{id}")
+    public PuntosGanados buscarPorId(@PathVariable Long id) {
+        PuntosGanados mostrar = puntosGanadosServices.buscarPorId(id);
+        return mostrar;
+    }
+
+    @DeleteMapping("/puntosGanados/{id}")
+    public String borrarPorId(@PathVariable Long id) {
+        puntosGanadosServices.borrarPorId(id);
         return "El tipo de mascota ha sido borrrado";
     }
 
-    @PutMapping("/tipoMisiones/{id}")
-    public PuntosGanados editarPorId (@PathVariable Long id, @RequestBody PuntosGanados actualizado) {
-        PuntosGanados editado = puntosganadosImpl.editarPuntosGanados(id, actualizado);
+    @PutMapping("/puntosGanados/{id}")
+    public PuntosGanados editarPorId(@PathVariable Long id, @RequestBody PuntosGanados actualizado) {
+        PuntosGanados editado = puntosGanadosServices.editarPorId(id, actualizado);
         return editado;
 
     }
+
+
 }

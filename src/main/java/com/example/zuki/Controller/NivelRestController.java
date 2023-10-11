@@ -12,36 +12,44 @@ import java.util.List;
 @RequestMapping("/api")
 public class NivelRestController {
 
-    @Autowired
-    NivelServiceImpl nivelService;
 
-    @GetMapping("/nivelLista")
-    public List<Nivel> listaDeNiveles() {
-        List<Nivel> listaMostrar = nivelService.listaDeNiveles();
-        return listaMostrar;
+    @Autowired
+    private NivelServiceImpl nivelServiceImpl;
+
+    @GetMapping(value = "/tipomascota")
+    public String TipoMascota() {
+        return "Tipos de mascotas";
     }
 
-    @GetMapping("/nivelBuscar/{id}")
-    public Nivel buscarPorId (@PathVariable Long id){
-        Nivel mostrar = nivelService.buscarPorId(id);
+    @GetMapping("/tipoMisiones")
+    public List<Nivel> lista(){
+        List<Nivel> mostrar = nivelServiceImpl.lista();
         return mostrar;
     }
 
-    @PostMapping("/nuevo")
-    public Nivel crearNivel(@RequestBody Nivel nivelNuevo) {
-        return nivelService.guardarNivel(nivelNuevo);
+    @PostMapping(value = "/nuevotipomascota")
+    public String save(@RequestBody Nivel Nivel) {
+        nivelServiceImpl.guardar(Nivel);
+        return "Tipo de masccota Guardado";
     }
 
-    @PutMapping("/nivelEditar/{id}")
-    public Nivel editarUsuarioPorId(@RequestParam Long id, @RequestBody Nivel nivelActualizado) {
-        Nivel nivelEditado = nivelService.editarNivel(id, nivelActualizado);
-        return nivelEditado;
+
+    @GetMapping("/tipoMascota/{id}")
+    public Nivel buscarPorId(@PathVariable Long id) {
+        Nivel mostrar = nivelServiceImpl.buscarPorId(id);
+        return mostrar;
     }
 
-    @DeleteMapping("/nivelBorrar/{id}")
-    public String borrarNivelPorId(@RequestParam Long id) {
-        nivelService.borrarNivel(id);
-        return "El usuario ha sido borrado.";
+    @DeleteMapping("/tipoMascota/{id}")
+    public String borrarPorId(@PathVariable Long id) {
+        nivelServiceImpl.borrarPorId(id);
+        return "El tipo de mascota ha sido borrrado";
     }
 
+    @PutMapping("/tipoMisiones/{id}")
+    public Nivel editarPorId(@PathVariable Long id, @RequestBody Nivel actualizado) {
+        Nivel editado = nivelServiceImpl.editarPorId(id, actualizado);
+        return editado;
+
+    }
 }

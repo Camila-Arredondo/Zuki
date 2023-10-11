@@ -11,31 +11,41 @@ import java.util.List;
 @RequestMapping("/api")
 public class TipoMascotaRestController {
     @Autowired
-    private TipoMascotaServiceImpl tipoMascotaserviceImpl;
+    private TipoMascotaServiceImpl tipoMascotaservicesImpl;
 
-    @GetMapping(value = "/listatipomascota")
-    public List<TipoMascota> lista(){return tipoMascotaserviceImpl.ListaTipoMascota();}
+    @GetMapping(value = "/tipomascota")
+    public String TipoMascota() {
+        return "Tipos de mascotas";
+    }
+
+    @GetMapping("/tipoMisiones")
+    public List<TipoMascota> lista(){
+        List<TipoMascota> mostrar = tipoMascotaservicesImpl.lista();
+        return mostrar;
+    }
 
     @PostMapping(value = "/nuevotipomascota")
-    public String save(@RequestBody TipoMascota tipoMascota){
-        tipoMascotaserviceImpl.guardarTipoMascota(tipoMascota);
+    public String save(@RequestBody TipoMascota tipoMascota) {
+        tipoMascotaservicesImpl.guardar(tipoMascota);
         return "Tipo de masccota Guardado";
     }
+
+
     @GetMapping("/tipoMascota/{id}")
-    public TipoMascota buscarPorId (@PathVariable Long id){
-        TipoMascota mostrar = tipoMascotaserviceImpl.buscarTipoMascotaPorId(id);
+    public TipoMascota buscarPorId(@PathVariable Long id) {
+        TipoMascota mostrar = tipoMascotaservicesImpl.buscarPorId(id);
         return mostrar;
     }
 
     @DeleteMapping("/tipoMascota/{id}")
-    public String borrarPorId (@PathVariable Long id){
-        tipoMascotaserviceImpl.borrarTipoMascota(id);
+    public String borrarPorId(@PathVariable Long id) {
+        tipoMascotaservicesImpl.borrarPorId(id);
         return "El tipo de mascota ha sido borrrado";
     }
 
     @PutMapping("/tipoMisiones/{id}")
-    public TipoMascota editarPorId (@PathVariable Long id, @RequestBody TipoMascota actualizado) {
-        TipoMascota editado = tipoMascotaserviceImpl.editarTipoMascotaPorId(id, actualizado);
+    public TipoMascota editarPorId(@PathVariable Long id, @RequestBody TipoMascota actualizado) {
+        TipoMascota editado = tipoMascotaservicesImpl.editarPorId(id, actualizado);
         return editado;
 
     }
