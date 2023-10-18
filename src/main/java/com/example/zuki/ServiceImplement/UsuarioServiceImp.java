@@ -54,4 +54,14 @@ public class UsuarioServiceImp implements UsuarioService {
         }
 
     }
+
+    @Override
+    public Usuario IniciarSesion(String correo, String clave){
+        return repository.findByCorreoAndClave(correo, clave);
+    }
+
+    @Override
+    public Usuario buscarPorCorreo(String correo){
+        return  repository.findByCorreo(correo);
+    }
 }

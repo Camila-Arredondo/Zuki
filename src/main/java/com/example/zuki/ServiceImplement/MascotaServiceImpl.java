@@ -1,6 +1,7 @@
 package com.example.zuki.ServiceImplement;
 
 import com.example.zuki.Entity.Mascota;
+import com.example.zuki.Entity.Usuario;
 import com.example.zuki.Repository.MascotaRepository;
 import com.example.zuki.Service.MascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,9 @@ public class MascotaServiceImpl implements MascotaService {
             System.out.println("El ID indicado no existe");
             return null;
         }
+    }
+    @Override
+    public Mascota buscarMascotaPorIdUsuario(Usuario usuario) {
+        return mascotaRepository.findByUsuario(usuario);
     }
 }

@@ -14,4 +14,7 @@ public interface NivelService {
     void borrarPorId(Long id);
 
     Nivel editarPorId(Long id, Nivel actualizado);
+
+    Nivel encontrarNivel(Integer puntos);
+    Nivel sigNivel (Integer nivelActual);
 }

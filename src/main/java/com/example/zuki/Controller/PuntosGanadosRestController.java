@@ -13,8 +13,6 @@ public class PuntosGanadosRestController {
     @Autowired
     private PuntosGanadosServiceImpl puntosGanadosService;
 
-
-
     @GetMapping("/puntosGanados")
     public List<PuntosGanados> lista(){
         List<PuntosGanados> mostrar = puntosGanadosService.lista();

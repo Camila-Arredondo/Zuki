@@ -54,4 +54,12 @@ public class NivelServiceImpl implements NivelService {
             return null;
         }
     }
+    @Override
+    public Nivel encontrarNivel(Integer puntos){
+        return nivelRepository.encontrarNivel(puntos);
+    }
+    @Override
+    public Nivel sigNivel (Integer nivelActual){
+        return nivelRepository.sigNivel(nivelActual);
+    }
 }

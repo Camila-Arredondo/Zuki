@@ -55,4 +55,9 @@ public class MisionesServiceImpl implements MisionesService {
             return null;
         }
     }
+
+    @Override
+    public List<Misiones> misionesPorTipoNoRealizadas(Long tipomision, List<Long> ids) {
+        return repository.findMisionesByTipoAndNotInIds(tipomision, ids);
+    }
 }

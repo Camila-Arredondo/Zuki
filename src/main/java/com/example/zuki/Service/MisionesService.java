@@ -10,4 +10,5 @@ public interface MisionesService {
     Misiones guardar(Misiones nuevo);
     void borrarPorId(Long id);
     Misiones editarPorId(Long id,Misiones actualizado);
+    List<Misiones> misionesPorTipoNoRealizadas (Long tipomision, List<Long> ids);
 }

@@ -3,11 +3,14 @@ package com.example.zuki.Controller;
 import com.example.zuki.Entity.TipoMascota;
 import com.example.zuki.ServiceImplement.TipoMascotaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*") // Permitir cualquier origen solo para este método
+
 @RequestMapping("/api")
 public class TipoMascotaRestController {
     @Autowired
@@ -15,9 +18,9 @@ public class TipoMascotaRestController {
 
 
     @GetMapping("/tipoMascota")
-    public List<TipoMascota> lista(){
+    public ResponseEntity<?> lista(){
         List<TipoMascota> mostrar = tipoMascotaService.lista();
-        return mostrar;
+        return ResponseEntity.ok(mostrar);
     }
 
     @PostMapping(value = "/tipoMascota")

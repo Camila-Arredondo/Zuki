@@ -1,5 +1,6 @@
 package com.example.zuki.ServiceImplement;
 
+import com.example.zuki.Entity.Mascota;
 import com.example.zuki.Entity.PuntosGanados;
 import com.example.zuki.Repository.PuntosGanadosRepository;
 import com.example.zuki.Service.PuntosGanadosService;
@@ -51,5 +52,10 @@ public class PuntosGanadosServiceImpl implements PuntosGanadosService {
             System.out.println("El ID indicado no existe");
             return null;
         }
+    }
+
+    @Override
+    public List<PuntosGanados> obtenerPuntosMascota(Mascota mascota) {
+        return puntosGanadosRepository.findByMascota(mascota);
     }
 }
