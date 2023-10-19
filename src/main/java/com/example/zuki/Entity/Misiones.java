@@ -34,15 +34,12 @@ public class Misiones {
     private Integer experienciaMision;
 
     @Column(name="ubicaciónMision")
-    @NotNull
     private String ubicaciónMision;
 
     @Column(name="qrMision")
-    @NotNull
     private String qrMision;
 
     @Column(name = "fotoMision")
-    @NotNull
     private String fotoMision;
 
 
